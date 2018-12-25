@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+<h2>Product</h2>
+
+<div class="m-1 m-1 container">
+    @foreach (var product in Model)
+    {
+        <div class="row p-1 m-1">
+            <div class="col">@product.Name</div>
+            <div class="col">@($"{product.Price} $")</div>
+            <div class="col">
+                <button class="btn btn-success">Buy</button>
+            </div>
+        </div>
+    }
+</div>
+
+<div id="addProd" class="m-1 p-1">
+    <button id="createProd" class="btn btn-primary" onclick="createForm();">Create Product</button>
+</div>
+
+<script>
+    function createForm() {
+        document.getElementById("createProd").setAttribute("hidden", "hidden");
+        var form = document.createElement("div");
+        form.setAttribute("class", "m-1 p-1 col-md-3 border form-group");
+        form.setAttribute("id", "createProductForm");
+
+        var inputName = document.createElement("input");
+        inputName.setAttribute("class", "m-1 form-control");
+        inputName.setAttribute("type", "text");
+
+        var inputPrice = document.createElement("input");
+        inputPrice.setAttribute("class", "m-1 form-control");
+        inputPrice.setAttribute("type", "number");
+        inputPrice.setAttribute("min", "0");
+        inputPrice.setAttribute("value", "0");
+        inputPrice.setAttribute("step", "any");
+        inputPrice.setAttribute("required", "required");
+
+        var saveProductButton = document.createElement("button");
+        saveProductButton.setAttribute("class", "btn btn-success");
+        saveProductButton.textContent = "Save Product";
+        saveProductButton.onclick = function() {
+            saveProduct();
+        }
+
+        form.appendChild(inputName);
+        form.appendChild(inputPrice);
+        form.appendChild(saveProductButton);
+
+        document.getElementById("addProd").appendChild(form);
+    }
+
+    function saveProduct() {
+        document.getElementById("createProd").removeAttribute("hidden");
+        document.getElementById("createProductForm").remove();      
+    }
+</script>

@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        @await Html.PartialAsync("Header")
+    </header>
+    <div class="m-2 p-2">
+        @RenderBody()
+    </div>
+</body>
+</html>
